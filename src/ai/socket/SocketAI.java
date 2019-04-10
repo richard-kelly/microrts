@@ -34,7 +34,7 @@ public class SocketAI extends AIWithComputationBudget {
     
     UnitTypeTable utt = null;
             
-    int communication_language = LANGUAGE_XML;
+    int communication_language = LANGUAGE_JSON;
     String serverAddress = "127.0.0.1";
     int serverPort = 9898;
     Socket socket = null;
@@ -285,8 +285,8 @@ public class SocketAI extends AIWithComputationBudget {
         List<ParameterSpecification> l = new ArrayList<>();
         
         l.add(new ParameterSpecification("Server Address", String.class, "127.0.0.1"));
-        l.add(new ParameterSpecification("Server Port", Integer.class, 9898));
-        l.add(new ParameterSpecification("Language", Integer.class, LANGUAGE_XML));
+        l.add(new ParameterSpecification("Server Port", int.class, 9898));
+        l.add(new ParameterSpecification("Language", int.class, LANGUAGE_JSON));
         
         return l;
     }
