@@ -278,14 +278,25 @@ public class SocketAI extends AIWithComputationBudget {
     public AI clone() {
         return new SocketAI(TIME_BUDGET, ITERATIONS_BUDGET, serverAddress, serverPort, communication_language, utt);
     }
-    
+
+    public void setServerAddress(String server) {
+        serverAddress = server;
+    }
+
+    public void setServerPort(int port) {
+        serverPort = port;
+    }
+
+    public void setLanguage(int language) {
+        communication_language = language;
+    }
 
     @Override
     public List<ParameterSpecification> getParameters() {
         List<ParameterSpecification> l = new ArrayList<>();
         
-        l.add(new ParameterSpecification("Server Address", String.class, "127.0.0.1"));
-        l.add(new ParameterSpecification("Server Port", int.class, 9898));
+        l.add(new ParameterSpecification("ServerAddress", String.class, "127.0.0.1"));
+        l.add(new ParameterSpecification("ServerPort", int.class, 9898));
         l.add(new ParameterSpecification("Language", int.class, LANGUAGE_JSON));
         
         return l;
