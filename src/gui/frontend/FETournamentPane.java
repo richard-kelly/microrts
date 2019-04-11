@@ -281,6 +281,7 @@ public class FETournamentPane extends JPanel {
                 JScrollPane listScroller = new JScrollPane(mapList);
                 listScroller.setPreferredSize(new Dimension(200, 100));
                 p2maps.add(listScroller);
+                mapFileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
                 JButton add = new JButton("+");
                 add.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e)
