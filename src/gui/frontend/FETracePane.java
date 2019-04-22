@@ -43,7 +43,9 @@ public class FETracePane extends JPanel {
     
     public FETracePane(FEStatePane a_stateTab) {
         stateTab = a_stateTab;
-        
+
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+
         setLayout(new BorderLayout());
         
         JPanel p1 = new JPanel();
