@@ -679,6 +679,10 @@ public class FEStatePane extends JPanel {
                                         trace.toxml(xml);
                                         xml.flush();
                                     }
+
+                                    int winner = gs.winner();
+                                    ai1.gameOver(winner);
+                                    ai2.gameOver(winner);
                                     
                                 } catch(Exception ex) {
                                     ex.printStackTrace();
