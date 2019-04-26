@@ -223,6 +223,8 @@ public class FEStatePane extends JPanel {
 
         setLayout(new BorderLayout());
 
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+
         JPanel p1 = new JPanel();
         p1.setLayout(new BoxLayout(p1, BoxLayout.Y_AXIS));
         {
