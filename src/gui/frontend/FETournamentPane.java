@@ -282,15 +282,18 @@ public class FETournamentPane extends JPanel {
                 listScroller.setPreferredSize(new Dimension(200, 100));
                 p2maps.add(listScroller);
                 mapFileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+                mapFileChooser.setMultiSelectionEnabled(true);
                 JButton add = new JButton("+");
                 add.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e)
                     {
                         int returnVal = mapFileChooser.showOpenDialog((Component)null);
                         if (returnVal == JFileChooser.APPROVE_OPTION) {
-                            File file = mapFileChooser.getSelectedFile();
+                            File[] files = mapFileChooser.getSelectedFiles();
                             try {
-                                mapListModel.addElement(file.getPath());
+                                for (File file : files) {
+                                    mapListModel.addElement(file.getPath());
+                                }
                             } catch (Exception ex) {
                                 ex.printStackTrace();
                             }
