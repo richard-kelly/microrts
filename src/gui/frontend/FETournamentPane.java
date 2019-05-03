@@ -341,6 +341,7 @@ public class FETournamentPane extends JPanel {
                     ptmp.setLayout(new BoxLayout(ptmp, BoxLayout.X_AXIS));
                     ptmp.add(new JLabel("UnitTypeTable"));
                     unitTypeTableBox = new JComboBox(FEStatePane.unitTypeTableNames);
+                    unitTypeTableBox.setSelectedIndex(3);
                     unitTypeTableBox.setAlignmentX(Component.CENTER_ALIGNMENT);
                     unitTypeTableBox.setAlignmentY(Component.CENTER_ALIGNMENT);
                     unitTypeTableBox.setMaximumSize(new Dimension(160,20));
