@@ -325,14 +325,14 @@ public class FixedOpponentsTournament {
                             progress.write("Winner: " + winner + "  in " + gs.getTime() + " cycles\n");
                             progress.write(ai1 + " : " + ai1.statisticsString() + "\n");
                             progress.write(ai2 + " : " + ai2.statisticsString() + "\n");
-                            progress.write("AI1 time usage, average:  " + (averageTime1/numTimes1) + 
-                                           ", # times over budget: " + numberOfTimeOverBudget1 + " (avg " + (averageTimeOverBudget1/numberOfTimeOverBudget1) + 
-                                           ") , # times over 2*budget: " + numberOfTimeOverTwiceBudget1 + " (avg " + (averageTimeOverTwiceBudget1/numberOfTimeOverTwiceBudget1) + ")\n");
-                            progress.write("AI2 time usage, average:  " + (averageTime2/numTimes2) + 
-                                           ", # times over budget: " + numberOfTimeOverBudget2 + " (avg " + (averageTimeOverBudget2/numberOfTimeOverBudget2) + 
-                                           ") , # times over 2*budget: " + numberOfTimeOverTwiceBudget2 + " (avg " + (averageTimeOverTwiceBudget2/numberOfTimeOverTwiceBudget2) + ")\n");
+                            progress.write("AI1 time usage, average:  " + (averageTime1 / numTimes1) +
+                                    ", # times over budget: " + numberOfTimeOverBudget1 + " (avg " + (averageTimeOverBudget1 / numberOfTimeOverBudget1) +
+                                    ") , # times over 2*budget: " + numberOfTimeOverTwiceBudget1 + " (avg " + (averageTimeOverTwiceBudget1 / numberOfTimeOverTwiceBudget1) + ")\n");
+                            progress.write("AI2 time usage, average:  " + (averageTime2 / numTimes2) +
+                                    ", # times over budget: " + numberOfTimeOverBudget2 + " (avg " + (averageTimeOverBudget2 / numberOfTimeOverBudget2) +
+                                    ") , # times over 2*budget: " + numberOfTimeOverTwiceBudget2 + " (avg " + (averageTimeOverTwiceBudget2 / numberOfTimeOverTwiceBudget2) + ")\n");
+                            progress.flush();
                         }
-                        progress.flush();
                         if (winner == -1) {
                             ties[ai1_idx][ai2_idx]++;
 //                            ties[ai2_idx][ai1_idx]++;
@@ -397,7 +397,9 @@ public class FixedOpponentsTournament {
             out.write("\n");
         }
         out.flush();
-        if (progress!=null) progress.write("FixedOpponentsTournament: tournament ended\n");
-        progress.flush();
+        if (progress!=null) {
+            progress.write("FixedOpponentsTournament: tournament ended\n");
+            progress.flush();
+        }
     }
 }
