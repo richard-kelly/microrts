@@ -56,6 +56,7 @@ import ai.montecarlo.lsi.LSI;
 import ai.portfolio.PortfolioAI;
 import ai.portfolio.portfoliogreedysearch.PGSAI;
 import ai.puppet.PuppetSearchMCTS;
+import ai.socket.AbstractionSocketAI;
 import ai.socket.SocketAI;
 import ai.stochastic.UnitActionProbabilityDistribution;
 import gui.MouseController;
@@ -163,7 +164,8 @@ public class FEStatePane extends JPanel {
                    InformedNaiveMCTS.class,
                    PuppetSearchMCTS.class,
                    SCV.class,
-                   SocketAI.class
+                   SocketAI.class,
+                   AbstractionSocketAI.class
                   };
 
     
