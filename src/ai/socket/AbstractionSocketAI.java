@@ -10,6 +10,8 @@ import ai.abstraction.pathfinding.AStarPathFinding;
 import ai.core.AI;
 import ai.core.AIWithComputationBudget;
 import ai.core.ParameterSpecification;
+import ai.evaluation.EvaluationFunction;
+import ai.evaluation.SimpleSqrtEvaluationFunction3;
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
@@ -58,9 +60,12 @@ public class AbstractionSocketAI extends AbstractionLayerAI {
     UnitType heavyType;
     UnitType rangedType;
 
+    EvaluationFunction evaluationFunction;
+
     public AbstractionSocketAI(UnitTypeTable a_utt) {
         super(new AStarPathFinding(), -1,-1);
         utt = a_utt;
+        evaluationFunction = new SimpleSqrtEvaluationFunction3();
         initUnitTypes();
         try {
             connectToServer();
@@ -75,6 +80,7 @@ public class AbstractionSocketAI extends AbstractionLayerAI {
         serverPort = a_port;
         communication_language = a_language;
         utt = a_utt;
+        evaluationFunction = new SimpleSqrtEvaluationFunction3();
         initUnitTypes();
         try {
             connectToServer();
@@ -87,6 +93,7 @@ public class AbstractionSocketAI extends AbstractionLayerAI {
         super(new AStarPathFinding(), mt, mi);
         communication_language = a_language;
         utt = a_utt;
+        evaluationFunction = new SimpleSqrtEvaluationFunction3();
         initUnitTypes();
         try {
             this.socket = socket;
@@ -198,6 +205,7 @@ public class AbstractionSocketAI extends AbstractionLayerAI {
     public PlayerAction getAction(int player, GameState gs) throws Exception {
         // send the game state:
         out_pipe.append("getAction " + player + "\n");
+        out_pipe.append(evaluationFunction.evaluate(player, (player + 1) % 2, gs) + "\n");
         if (communication_language == LANGUAGE_XML) {
             XMLWriter w = new XMLWriter(out_pipe, " ");
             gs.toxml(w);

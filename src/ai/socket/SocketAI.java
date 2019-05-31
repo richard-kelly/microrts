@@ -15,6 +15,9 @@ import java.io.StringReader;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+
+import ai.evaluation.EvaluationFunction;
+import ai.evaluation.SimpleSqrtEvaluationFunction3;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 import rts.GameState;
@@ -40,10 +43,13 @@ public class SocketAI extends AIWithComputationBudget {
     Socket socket = null;
     BufferedReader in_pipe = null;
     PrintWriter out_pipe = null;
+
+    EvaluationFunction evaluationFunction;
     
     public SocketAI(UnitTypeTable a_utt) {
         super(100,-1);
         utt = a_utt;
+        evaluationFunction = new SimpleSqrtEvaluationFunction3();
         try {
             connectToServer();
         }catch(Exception e) {
@@ -58,6 +64,7 @@ public class SocketAI extends AIWithComputationBudget {
         serverPort = a_port;
         communication_language = a_language;
         utt = a_utt;
+        evaluationFunction = new SimpleSqrtEvaluationFunction3();
         try {
             connectToServer();
         }catch(Exception e) {
@@ -69,6 +76,7 @@ public class SocketAI extends AIWithComputationBudget {
         super(mt, mi);
         communication_language = a_language;
         utt = a_utt;
+        evaluationFunction = new SimpleSqrtEvaluationFunction3();
         try {
             this.socket = socket;
             in_pipe = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -163,6 +171,7 @@ public class SocketAI extends AIWithComputationBudget {
     public PlayerAction getAction(int player, GameState gs) throws Exception {
         // send the game state:
         out_pipe.append("getAction " + player + "\n");
+        out_pipe.append(evaluationFunction.evaluate(player, (player + 1) % 2, gs) + "\n");
         if (communication_language == LANGUAGE_XML) {
             XMLWriter w = new XMLWriter(out_pipe, " ");
             gs.toxml(w);
